@@ -1,12 +1,28 @@
-let mySound;
+var song;
+var button;
+
 function setup()
 {
+    createCanvas(200,200);
     soundFormats('mp3','ogg');
-    mySound=loadSound('music');
+    song=loadSound('music.mp3',loaded);
+    button=createButton('play');
+    button.mousePressed(togglePlaying);
+    background(51);
     //mySound.play();
 }
 
-function loadMusic()
-{
-    mySound.play();
+function togglePlaying(){
+    if(!song.isPlaying){
+        song.play();
+        song.setVolume(0.3);
+        button.html('pause');
+    }else{
+        song.stop();
+        button.html('play');
+    }
+}
+
+function loaded(){
+    console.log('loaded');
 }
